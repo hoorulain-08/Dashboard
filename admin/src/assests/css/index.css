@@ -1,0 +1,21 @@
+body {
+  font-family: Arial, Helvetica, sans-serif;
+
+}
+
+.container {
+ 
+  max-width: 1500px;
+  background-color: #0e67c045;
+  /* margin-top: 10px; */   
+  
+}
+.logo
+{
+  display: flex;
+}
+.heading
+{
+  font-size: medium;
+  color :blue
+}

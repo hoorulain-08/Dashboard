@@ -1,0 +1,203 @@
+
+the datat in <td> is taken from edit and delete of table.js
+
+ <td>
+                            <div className="edit-del-pos">
+                         
+                            {/* {adding nbsp here because paddig left is not working on this above pos class} */}
+                           <span onClick={() => sendEdit(info.email)}   className="edit-del" >
+                                <a href="#">
+                               <img src={edit} width={30} height={30} />
+                                </a>
+                              {" "} 
+                              <span onClick={()=>handleOpen(info)}>
+                            <a href="#">
+                              {" "}
+                              <img src={del} width={30} height={30} />
+                            </a>
+                          </span>
+                              
+                           
+                              </span>
+                         </div>
+                              {/* <span onClick={() => handleOpen(info)}>
+                                <a href="#">
+                               
+                                  <img src={del} width={25} height={25} />
+                                </a>
+                              </span> */}
+                            </td>
+
+
+
+
+it's return code of Table.txt
+   return (
+    <>
+   
+      <TableHeader />
+      
+<AuthContext.Provider
+    value={{
+     counter,setCounter
+    }}
+  >
+      {
+
+        view ? (
+        <ColumnsGrid email={val} />
+      ) : delt ? (
+        <Modal
+          open={open}
+          onClose={handleClose}
+          aria-labelledby="modal-modal-title"
+          aria-describedby="modal-modal-description"
+        >
+          <Box sx={style}>
+            <div className="img-pos-del">
+              <img src={delDaraz} className="del-img" />
+              <h1 className="draz-head">{name.registeredName}</h1>
+            </div>
+
+            <div className="del-daraz-p1">
+              You are About to delete a {name.registeredName} buisness user.This will delete{" "}
+              <br />
+              <span className="p1-pos">
+                {" "}
+                your entire buisness entry from digital identity system{" "}
+              </span>
+            </div>
+            <div className="del-daraz-p2">
+              All graphs and analytics will be removed & your RSS feed <br />
+              <span className="p2-pos">& website will stop working </span>
+            </div>
+
+            <div className="sure">Are You Sure?</div>
+            <div className="del-daraz-btn-pos">
+              <span>
+                <Button
+                  style={{ width: "39%" }}
+                  type="submit"
+                  variant="contained"
+                  id="daraz-del-button"
+               onClick={handleDelete} >
+                  Delete
+                </Button>
+                &nbsp;&nbsp;&nbsp;
+                <Button
+                  className="daraz-del-button"
+                  onClick={handleClose}
+                  style={{
+                    width: "39%",
+                    border: "2px solid white",
+                    backgroundColor: "	#B0C4DE",
+                    color: "white",
+                  }}
+                >
+                  Cancel
+                </Button>
+              </span>
+            </div>
+         
+          </Box>
+    
+        </Modal>
+      ) : newb ? (
+        <NewBusiness />
+      ) : editb ? (
+        
+        <EditApi object={object} color={"pink"}/>
+      ) : (
+        <div className="paper-pos">
+          <Paper id="reg-tab-paper-dashboard">
+            <div className="tab-head">
+              <span style={{ display: "flex" }}>
+                <div style={{ paddingLeft: "20px" }}>
+                  {" "}
+                  <img src={manageverified} id="mang-icon" />
+                </div>
+                <p id="manage-id"> Manage Verified Business</p>
+              </span>
+              {/* <h2 className="tab-heading">Managae all verified Businesses</h2> */}
+
+              <div className="t-pos">
+                <p className="t">
+                  <img src={add} className="img-add" />
+
+                  <Link className="link-add">
+                    &nbsp;<span onClick={setnew}> Add New Businesses</span>
+                  </Link>
+                </p>
+              </div>
+            </div>
+
+            {studentData.length ? (
+              <Table id="students">
+                <thead>
+                  <tr>
+                    <th>Sr.NO</th>
+                    <th>Business Name</th>
+                    <th>EID #</th>
+                    <th>Email</th>
+                    <th>Action</th>
+                    <th>Detail</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {studentData.map((info) => (
+                    <>
+                  
+                      <tr>
+                        <td>{info.id}</td>
+                        <td>{info.registeredName}</td>
+                        <td>{info.eid}</td>
+                        <td>{(chk = info.email)}</td>
+                        <td>
+                          <span onClick={()=>sendEdit(info.email)}>
+                            <a href="#">
+                              {" "}
+                              <img src={edit} width={25} height={25} />
+                            </a>
+                     
+                          </span>
+                          &nbsp;
+                          <span onClick={()=>handleOpen(info)}>
+                            <a href="#">
+                              {" "}
+                              <img src={del} width={25} height={25} />
+                            </a>
+                          </span>
+                        </td>
+                        <td className="view" onClick={() => check(info.email)}>
+                          <a href="#" className="view-link">
+                            {" "}
+                            View all
+                          </a>
+                        </td>
+                        {/* <td disabled={true}>
+                          info id is =  {info.id}
+                        </td> */}
+                      </tr>
+         
+                    </>
+                  ))}
+                </tbody>
+              </Table>
+            ) : (
+              <Typography
+                align="center"
+                sx={{
+                  margin: "40px 16px",
+                  color: "rgba(0, 0, 0, 0.6)",
+                  fontSize: "1.3rem",
+                }}
+              >
+                You don't have any subscription yet!
+              </Typography>
+            )}
+          </Paper>
+        </div>
+      )}
+      </AuthContext.Provider>
+    </>
+  );

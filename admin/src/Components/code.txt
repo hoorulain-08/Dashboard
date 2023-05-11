@@ -1,0 +1,457 @@
+
+ <Router>
+    <Routes>
+      <Route>  
+        <Route path="/" element={<Sidebar/>} exact />
+      <Route path="/table" element={<Table />} exact />
+    
+      <Route path="/admin/dashboard" element={<Sidebar/>} exact />
+{/*      
+        <Route path="/test" element={<Test/>} exact />  
+   
+       <Route path="/colum" element={<ColumnsGrid />} exact />
+       <Route path="/delete" element={<Del />} exact />
+       <Route path="/verify" element={<VerifyDocs />} exact />
+       <Route path="/approved" element={<Approved />} exact />
+       <Route path="/newbusiness" element={<NewBusiness />} exact />
+       <Route path="/edit" element={<Edit />} exact />
+       <Route path="/view" element={<ViewAll />} exact />
+   </Route>
+    
+    </Routes>
+  </Router>
+
+
+
+
+edit.js code
+import * as React from 'react';
+import { styled } from '@mui/material/styles';
+import Box from '@mui/material/Box';
+import Button from "@mui/material/Button";
+
+import daraz from  "../../assests/images/daraz.svg"
+import verifyuserIcon from "../../assests/images/verifyuserIcon.svg";
+import add from "../../assests/images/addIcon.svg";
+import save from "../../assests/images/save.svg";
+import { Formik, Form, Field, ErrorMessage } from "formik";
+import * as Yup from "yup";
+import { useState,useEffect } from 'react';
+import {
+    Card,
+    CardHeader,
+    CardBody,
+    CardFooter,
+    CardTitle,
+    Row,
+    Col,
+  } from "reactstrap";
+  import { Grid, Paper, Link } from "@material-ui/core";
+
+import "../../assests/css/App.css";
+import {SetUpdateProfileData} from  "../setData/SetData";
+import {SetProfileData,SetViewData} from "../setData/SetData";
+import { api } from "../API/Services";
+
+const Item = styled(Paper)(({ theme }) => ({
+  backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
+  ...theme.typography.body2,
+//   padding: theme.spacing(1),
+  textAlign: 'center',
+  color: theme.palette.text.secondary,
+  width:"400px",
+  height:"40px",
+ 
+  
+  
+}));
+const Add = styled(Paper)(({ theme }) => ({
+    backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
+    ...theme.typography.body2,
+  //   padding: theme.spacing(1),
+    textAlign: 'center',
+    color: theme.palette.text.secondary,
+    width:"784px",
+    height:"134px",
+  
+    
+  }));
+
+
+
+
+
+
+
+
+
+export default function Edit(props) {
+  // const [savedit,setSave]=useState(props)
+  // console.log(savedit.object.id);
+  const [view,setView]=useState(props.object);
+  const[fname,setFname]=useState();
+  const[lname,setLname]=useState();
+  const[eid,setEid]=useState();
+  const[incop,setIncop]=useState();
+  const[mob,setMob]=useState();
+  const[mail,setMail]=useState();
+  const[country,setCountry]=useState();
+  const[code,setCode]=useState();
+  const[address,setAddress]=useState();
+  const [company ,setCompany]=useState();
+  const [userId,setUserid]=useState();
+  const[getRes,setGet]=useState();
+    console.log(props.object);
+  
+    const initialValues = {
+      
+        identity:"",
+        email:"",
+        firstname:"",
+        lastname:"",
+        incorp:"",
+        mob:"",
+        country:"",
+        code:"",
+        company:"",
+        Address:""
+      
+      };
+
+      const validationSchema = Yup.object().shape({
+        firstname: Yup.string().required("Required"),
+        lastname: Yup.string().required("Required"),
+        identity: Yup.string().required("Required"),
+        mob: Yup.string().required("Required"),
+        email: Yup.string()
+        .email("Please enter a valid email address")
+        .required("Required"),
+        code: Yup.string().required("Required"),
+        company: Yup.string().required("Required"),
+        adress: Yup.string().required("Required"),
+        country: Yup.string().required("Required"),
+        incorp: Yup.string().required("Required"),
+      
+        
+        // password: Yup.string().required("Required"),
+      });
+    
+  const goodResponseHandler = (response) => {
+    console.log("edit in response handler function");
+ 
+    console.log({ response });
+    setGet(response)
+
+    setFname(response.legalEntity.firstName);
+    setLname(response.legalEntity.lastName);
+    setUserid(response.legalEntity.userId);
+    // setEid(response.identityStore.eid);
+    setIncop(response.legalEntity.registrationNumber);
+    setCompany(response.legalEntity.registeredName);
+    setMob(response.contactMethod.telephonic.mobileNumber);
+    // console.log(response.contactMethod.mobileNumber);
+    setMail(response.legalEntity.email);
+    setCountry(response.contactMethod.physicalContact.country);
+    setCode(response.contactMethod.physicalContact.zipCode);
+    setAddress(response.contactMethod.physicalContact.address);
+
+  };
+  const callToDbHandler = async (payload) => {
+    console.log("edit in call to db handler function ");
+    const response = await api.get.getViewData(payload);
+    console.log("edit fetched payoad is this" + response);
+    return response;
+  };
+
+      function LoadEditData(){
+        console.log("hello world");
+ console.log({props});
+      // const req= {...SetUpdateProfileData(props.object)};
+      const payload = { ...SetViewData(view) };
+      console.log({payload})
+      callToDbHandler(payload)
+        .then((res) => {
+          goodResponseHandler(res.successResponseData.payload);
+        })
+        .catch((err) => {
+          console.error(err);
+          throw Error("view Network response error");
+        });
+
+     
+
+      }
+      const onSubmit=()=>{
+
+console.log("in onSubmit function");
+        const req={...SetUpdateProfileData(getRes)};
+        console.log({req})
+
+      //   sessionStorage.removeItem("email");
+      // sessionStorage.setItem("email", values.username);
+        // SetData(values)
+    
+        //   setTimeout(() => {
+        //   props.resetForm();
+        //   props.setSubmitting();
+        // }, 5000);
+      }
+    
+      
+useEffect(()=>{
+
+  LoadEditData()
+
+}
+
+,[])
+
+
+  return (
+    <>
+    
+    <div className="paper-pos">
+    <div>
+      <h1>incoming value throgh props is : {props.id}</h1>
+    </div>
+
+    <Paper id="reg-verify-dashboard">
+
+    <div className="tab-head">
+       <span style={{display:"flex"}}>
+      <div style={{paddingLeft:"41px"}}>  <img src={daraz} id="mang-icon"/>
+    
+      </div> 
+    <p id="manage-id">  Daraz</p>
+      </span>
+        {/* <h2 className="tab-heading">Managae all verified Businesses</h2> */}
+      
+       <div className="t-edit-pos">
+         <p className="t"> 
+          <img src={add} className="img-add"/>
+
+          &nbsp; Edit and Share</p></div>
+       </div>
+
+       
+
+       <Formik
+             initialValues={initialValues}
+             onSubmit={onSubmit}
+             validationSchema={validationSchema}
+          >
+            {(props) => (
+              <Form>
+              {/* <h4>value of f name is : {incop}</h4> */}
+    <Box sx={{ flexGrow: 1 }} style={{paddingTop:"60px",paddingLeft:"100px"}}>
+    
+   <Grid container  columns={16} >
+    <div style={{paddingLeft:"100px"}}> 
+        <Grid item xs={8}>
+       
+          <label className='label'>Unique Digital  Identity Number</label>
+          <Item>
+          <Field type="identity" name="identity" className="in-disable"
+          disabled 
+            value={userId}
+          />
+                 
+          </Item>
+        </Grid>
+       </div>
+       <div style={{paddingLeft:"136px"}}> 
+        <Grid item xs={8}>
+       
+
+
+          <label className='label'>Email Adress</label>
+    <Item>
+    <Field type="email" name="email" className="in-disable"  value={mail}
+    disabled/>
+                 
+    </Item>
+        </Grid>
+        </div>
+      </Grid>
+      {/* <br/> */}
+
+      <Grid container  columns={16} >
+    <div style={{paddingLeft:"100px",paddingTop:"35px"}}> 
+
+        <Grid item xs={8} style={{paddingBottom:"10px"}}>
+        <label className='label'>First Name</label>
+        
+          <Field  className="in" 
+              value={fname}
+              name="firstname"
+              onChange={(e)=>{setFname(e.target.value)}}
+          />
+                 
+        
+        </Grid>
+       </div>
+       <div style={{paddingLeft:"42px",paddingTop:"35px"}}> 
+        <Grid item xs={8}>
+          
+
+
+          <label className='label'>Last Name</label>
+          <Item >
+
+          <Field type="lastname" name="lastname" className="in" value={lname} 
+            onChange={(e)=>{setLname(e.target.value)}}
+      
+          />
+                 
+          </Item>
+        </Grid>
+        </div>
+      </Grid>
+    
+
+<Grid container  columns={16} >
+<div style={{paddingLeft:"100px",paddingTop:"35px"}}> 
+  <Grid item xs={8}>
+  {/* Incorporation num */}
+  <label className='label'>Incorporation Number</label>
+          <Item >
+
+          <Field type="incorp" name="incorp" className="in" value={incop}
+            onChange={(e)=>{setIncop(e.target.value)}}
+          />
+                 
+          </Item>
+  </Grid>
+ </div>
+ <div style={{paddingLeft:"136px",paddingTop:"35px"}}> 
+  <Grid item xs={8}>
+
+    <label className='label'>Mobile Number</label>
+          <Item >
+
+          <Field type="mob" name="mob" className="in" value={mob}
+            onChange={(e)=>{setMob(e.target.value)}}
+          />
+                  
+          </Item>
+  </Grid>
+  </div>
+</Grid>
+
+
+
+      <Grid container  columns={16} >
+    <div style={{paddingLeft:"100px",paddingTop:"35px"}}> 
+        <Grid item xs={8}>
+  
+          <label className='label'>Country</label>
+    <Item>
+    <Field type="country" name="country" className="in" value={country}
+      onChange={(e)=>{setCountry(e.target.value)}}
+    />
+                  
+    </Item>
+        </Grid>
+       </div>
+       <div style={{paddingLeft:"136px",paddingTop:"35px"}}> 
+        <Grid item xs={8}>
+           <label className='label'>Postal Code</label>
+          <Item >
+
+          <Field type="code" name="code" className="in" value={code}
+            onChange={(e)=>{setCode(e.target.value)}}
+          />
+                 
+          </Item>
+        </Grid>
+        </div>
+      </Grid>
+ 
+
+<Grid container  columns={16} >
+<div style={{paddingLeft:"100px",paddingTop:"35px"}}> 
+  <Grid item xs={8}>
+  <label className='label'>Company</label>
+  <Item >
+  <Field type="company" name="company" className="in-iss" 
+    value={company}
+    onChange={(e)=>{setCompany(e.target.value)}}
+  />
+                  
+                     </Item>
+  </Grid>
+ </div>
+ {/* <div className='exp'> 
+  <Grid item xs={8}>
+     <label className='label'>Date of Expiry </label>
+    <Item >
+
+    <Field type="expiry" name="expiry" className="in" />
+                  <ErrorMessage
+                    name="expiry"
+                    component="div"
+                    className='error'
+                  />
+    </Item>
+  </Grid>
+  </div> */}
+</Grid>
+
+
+<Grid container  columns={16} >
+<div style={{paddingLeft:"100px",paddingTop:"35px"}}> 
+  <Grid item xs={8}>
+  {/* <label className='label'>Country</label>
+    <Item>
+    <Field type="country" name="country" className="in" />
+                  <ErrorMessage
+                    name="country"
+                    component="div"
+                    className='error'
+                  />
+    </Item> */}
+  </Grid>
+ </div>
+ 
+</Grid>
+<Grid container  columns={16} >
+<div style={{paddingLeft:"100px",paddingTop:"35px"}}> 
+  <Grid item xs={8}>
+  <label className='label'>Address</label>
+    <Add>
+    <Field type="adress" name="address" className="in-add" 
+       value={address} 
+       onChange={(e)=>{setAddress(e.target.value)}}
+    />
+                  
+    </Add>
+  </Grid>
+ </div>
+</Grid>
+ <div className="t-btn-pos">
+         <p className="butn"> 
+      <span style={{display:"flex"}}> 
+      <img src={save} className="save-img-add"/>
+
+          &nbsp; <Button id="save-btn"
+                      disabled={props.isSubmitting}
+                      type="submit"
+                      variant='contained'
+                      
+                      
+                      >
+            <span id='save'> Save</span> 
+          </Button>
+          </span>
+          
+       </p></div>
+
+    </Box>
+    </Form>
+            )}
+          </Formik>
+    </Paper>
+    </div>
+    </>
+  );
+}

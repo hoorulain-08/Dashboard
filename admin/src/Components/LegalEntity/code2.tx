@@ -1,0 +1,314 @@
+import React, { useState } from "react";
+
+import {
+  Grid,
+  Paper,
+  Avatar,
+  TextField,
+  Typography,
+  Link,
+} from "@material-ui/core";
+
+import Box from "@mui/material/Box";
+import Alert from "@mui/material/Alert";
+import IconButton from "@mui/material/IconButton";
+import Collapse from "@mui/material/Collapse";
+import Button from "@mui/material/Button";
+import CloseIcon from "@mui/icons-material/Close";
+import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
+// import { useNavigate } from "react-router-dom";
+import "../../assests/css/style.css"
+import { Formik, Form, Field, ErrorMessage } from "formik";
+import * as Yup from "yup";
+// import AsyncLoader from "../async_loader/index";
+// import { SetLoginDigitalData, SetProfileData } from "../SetData";
+// import PasswordShowHide from "../assets/css/PasswordShowHide";
+import { withThemeCreator } from "@material-ui/styles";
+import { styled } from '@mui/material/styles';
+
+
+function  Edit (props){
+
+  const [response, setResponse] = useState("");
+  const [success, setSuccess] = useState(false);
+  const [view,setView]=useState(props.object);
+  const[fname,setFname]=useState("hoor");
+  const[lname,setLname]=useState("ulain");
+  const [userId,setUserid]=useState("jkhjkhz34535");
+  const[mail,setMail]=useState("hoor@gmail.com");
+  const[incop,setIncop]=useState("test");
+  const[mob,setMob]=useState("test");
+  const[country,setCountry]=useState("test");
+  const[code,setCode]=useState("test");
+  const initialValues = {
+    firstname: "",
+    lastname: "",
+    identity:"",
+    email:"",
+    incorp:"",
+        mob:"",
+        country:"",
+        code:"",
+  };
+
+  const radios = [
+    { name: "Digital Citizen", value: "NATURL_PERON" },
+    { name: "Legal Entity", value: "LEGAL_ENTITY" },
+  ];
+
+  // ----------------------------------------------------------------------
+  //validate form inputs
+  // const validationSchema = Yup.object().shape({
+  //   firstname: Yup.string().required("Required"),
+  //   lastname: Yup.string().required("Required"),
+  //   identity: Yup.string().required("Required"),
+  //   email: Yup.string()
+  //   .required("Required"),
+  // });
+
+  
+
+  const onSubmit=(values, props)=>{
+  console.log("in on submit file ");
+  console.log({values})
+  }
+
+  const Item = styled(Paper)(({ theme }) => ({
+    backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
+    ...theme.typography.body2,
+  //   padding: theme.spacing(1),
+    textAlign: 'center',
+    color: theme.palette.text.secondary,
+    width:"400px",
+    height:"40px",
+   
+    
+    
+  }));
+  const Add = styled(Paper)(({ theme }) => ({
+      backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
+      ...theme.typography.body2,
+    //   padding: theme.spacing(1),
+      textAlign: 'center',
+      color: theme.palette.text.secondary,
+      width:"784px",
+      height:"134px",
+    
+      
+    }));
+
+  return (
+    <div className="paper-pos">
+   
+      <Paper id="reg-verify-dashboard">
+          {/* <img src={logo} className="reg-App-logo" alt="logo" /> */}
+         
+          <div>
+           
+          </div>
+          <Formik
+            initialValues={initialValues}
+            onSubmit={onSubmit}
+           
+          >
+            {(props) => (
+              <Form>
+            
+              <Box sx={{ flexGrow: 1 }} style={{paddingTop:"60px",paddingLeft:"100px"}}>
+    
+    <Grid container  columns={16} >
+     <div style={{paddingLeft:"100px"}}> 
+         <Grid item xs={8}>
+        
+           <label className='label'>Unique Digital  Identity Number</label>
+           <Item>
+           <Field type="identity" name="identity" className="in-disable"
+    value={userId}
+           />
+                  
+           </Item>
+         </Grid>
+        </div>
+        <div style={{paddingLeft:"136px"}}> 
+         <Grid item xs={8}>
+           <label className='label'>Email Adress</label>
+     <Item>
+     <Field type="email" name="email" className="in-disable"
+     value={mail}
+   
+       />            
+     </Item>
+         </Grid>
+         </div>
+       </Grid>
+          <Grid container  columns={16} >
+    <div style={{paddingLeft:"100px",paddingTop:"55px"}}> 
+        <Grid item xs={8}>
+        <label className='label'>First Name</label>
+        <div className='in-field'> 
+         <Item>
+          <Field name="firstname" className="in-new"
+          onChange={(e)=>{setFname(e.target.value)}}
+          value={fname} />
+         </Item>
+          </div>
+        </Grid>
+       </div>
+       <div style={{paddingLeft:"136px",paddingTop:"55px"}}> 
+        <Grid item xs={8}>
+        <label className='label'>Last Name</label>
+        <div className='in-field'>  <Item >
+
+          <Field type="lastname" name="lastname" className="in-new" 
+          onChange={(e)=>{setLname(e.target.value)}}
+            value={lname}
+          />
+                 
+          </Item></div>
+        </Grid>
+        </div>
+      </Grid>
+
+
+
+      <Grid container  columns={16} >
+<div style={{paddingLeft:"100px",paddingTop:"35px"}}> 
+  <Grid item xs={8}>
+  {/* Incorporation num */}
+  <label className='label'>Incorporation Number</label>
+          <Item >
+
+          <Field type="incorp" name="incorp" className="in" value={incop}
+            onChange={(e)=>{setIncop(e.target.value)}}
+          />
+                 
+          </Item>
+  </Grid>
+ </div>
+ <div style={{paddingLeft:"136px",paddingTop:"35px"}}> 
+  <Grid item xs={8}>
+
+    <label className='label'>Mobile Number</label>
+          <Item >
+
+          <Field type="mob" name="mob" className="in" value={mob}
+            onChange={(e)=>{setMob(e.target.value)}}
+          />
+                  
+          </Item>
+  </Grid>
+  </div>
+</Grid>
+
+<Grid container  columns={16} >
+    <div style={{paddingLeft:"100px",paddingTop:"35px"}}> 
+        <Grid item xs={8}>
+  
+          <label className='label'>Country</label>
+    <Item>
+    <Field type="country" name="country" className="in" value={country}
+      onChange={(e)=>{setCountry(e.target.value)}}
+    />
+                  
+    </Item>
+        </Grid>
+       </div>
+       <div style={{paddingLeft:"136px",paddingTop:"35px"}}> 
+        <Grid item xs={8}>
+           <label className='label'>Postal Code</label>
+          <Item >
+
+          <Field type="code" name="code" className="in" value={code}
+            onChange={(e)=>{setCode(e.target.value)}}
+          />
+                 
+          </Item>
+        </Grid>
+        </div>
+      </Grid>
+
+                  <div className="footer">
+                   
+                  </div>
+                  <br />
+                  <div style={{ paddingLeft: "38px" }}>
+                    {" "}
+                    <Button
+                      style={{ width: "77%" }}
+                      disabled={props.isSubmitting}
+                      type="submit"
+                      variant="contained"
+                      id="reg-button"
+                    >
+                    save
+                    </Button>
+                  </div>
+                  &nbsp;&nbsp;&nbsp;&nbsp;{" "}
+                  <div style={{ paddingLeft: "37px" }}>
+                    <Typography
+                      component={"div"}
+                      style={{ paddingLeft: "37px", fontSize: "small" }}
+                    >
+                      {" "}
+                      Don't have an account?
+                      <Link
+                        href="/register"
+                        style={{ color: "rgb(60,179,113)" }}
+                      >
+                        Create New One
+                      </Link>
+                    </Typography>
+                  </div>
+                
+
+                <br />
+                <br />
+                <br />
+                </Box>
+              </Form>
+            )}
+          </Formik>
+        </Paper>
+ 
+    </div>
+  );
+};
+
+// function setProfile() {
+//   var req = SetProfileData();
+
+//   console.log("Request", req);
+
+//   const API_URL = process.env.USER_PROFILE;
+//   fetch(API_URL, {
+//     method: "POST",
+//     headers: {
+//       Accept: "application/json",
+//       "Content-Type": "application/json",
+//       "Access-Control-Allow-Origin": "*",
+//     },
+//     body: JSON.stringify(req),
+//   })
+//     .then((response) => response.json())
+//     .then((res) => {
+//       sessionStorage.removeItem("user-info");
+//       sessionStorage.setItem(
+//         "user-info",
+//         JSON.stringify(res.successResponseData.payload)
+//       );
+//     });
+// }
+
+export default Edit;
+
+// export function getProfile() {
+//   return async (dispatch) => {
+//     dispatch(slice.actions.startLoading());
+//     try {
+//       const response = await axios.get("/api/user/profile");
+//       dispatch(slice.actions.getProfileSuccess(response.data.profile));
+//     } catch (error) {
+//       dispatch(slice.actions.hasError(error));
+//     }
+//   };
+// }
