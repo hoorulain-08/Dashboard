@@ -5,25 +5,17 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Routes,
   Redirect,
-  Navigate,
 } from "react-router-dom";
 
-// import "./src/assests/css/index.css";
 import "./assests/css/App.css";
 
-import Admin from "./Components/LegalEntity/NewSidebar"
+import Admin from "./Components/MainPanel/NewSidebar"
 // console.log("at the entrance of admindashbaord")
 ReactDOM.render(
   
   <div className="container">
-  {/* <StyledEngineProvider injectFirst>
-      <Sidebar />
-  </StyledEngineProvider> */}
 
-
-  
  <Router>
 
       <Switch>
@@ -35,9 +27,5 @@ ReactDOM.render(
     </Router>
    
   </div>
-  
-  
-  
-  
-  
+
   , document.getElementById("root"));

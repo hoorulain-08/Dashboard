@@ -7,24 +7,11 @@ import Box from '@mui/material/Box';
 import Button from "@mui/material/Button";
 
 import daraz from  "../../assests/images/daraz.svg"
-import verifyuserIcon from "../../assests/images/verifyuserIcon.svg";
 import add from "../../assests/images/addIcon.svg";
 import save from "../../assests/images/save.svg";
 import { Formik, Form, Field, ErrorMessage } from "formik";
-import * as Yup from "yup";
 import { useState,useEffect } from 'react';
-import TextField from "@mui/material/TextField";
-import { withFormik } from "formik";
-import { useFormik } from 'formik';
-import {
-    Card,
-    CardHeader,
-    CardBody,
-    CardFooter,
-    CardTitle,
-    Row,
-    Col,
-  } from "reactstrap";
+
   import { Grid, Paper, Link } from "@material-ui/core";
 
 import "../../assests/css/App.css";
@@ -66,12 +53,7 @@ const Add = styled(Paper)(({ theme }) => ({
   import { useContext } from "react";
   import axios, { post } from "axios"; 
 export default function Edit(props) {
-  // const [savedit,setSave]=useState(props)
-  // console.log(savedit.object.id);
-  // console.log("In Edit file ")
-  // console.log({props});
-  // console.log(props.color);
-
+  
   const [view,setView]=useState(props.object);
   const[fname,setFname]=useState(props.firstName);
   const[lname,setLname]=useState(props.lastName);
@@ -240,13 +222,7 @@ export default function Edit(props) {
           &nbsp; Edit and Share</p></div>
        </div>
 
-{  
-
-
-// show?
-//   <div style={{paddingLeft:"570px",paddingTop:"50px"}}>
-//   <div className='load-spin'> </div>
-// </div> :    
+{      
 <div>
        <Formik
              initialValues={initialValues}

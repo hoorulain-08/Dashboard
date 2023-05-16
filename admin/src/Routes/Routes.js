@@ -1,19 +1,18 @@
 
-import Dashboard from "../Components/LegalEntity/Dashboard";
+import Dashboard from "../Components/MainPanel/Dashboard";
 
-import Edit from "../Components/LegalEntity/Edit";
+import Edit from "../Components/MainPanel/Edit";
 import board from "../assests/images/board.png";
 import digital from "../assests/images/digital.png";
-// import logout from "../assests/images/logout.svg";
-import legal from "../assests/images/legal.svg";
-// import DigitalCitizen from "../Components/Digital Citizen/digitalCitizen";
-// import Verify from "../Components/LegalEntity/VerifyDocs";
-import Email from "../Components/LegalEntity/Email";
+
+
+
+import Email from "../Components/MainPanel/Email";
 import compose from "../assests/images/compose.png";
 import charts from "../assests/images/charts.png";
 import forums from "../assests/images/forums.png";
-import Chart from "../Components/LegalEntity/charts";
-import Forums from "../Components/LegalEntity/Forums";
+import Chart from "../Components/MainPanel/charts";
+import Forums from "../Components/MainPanel/Forums";
 var routes = [
   {
     path: "/dashboard",

@@ -20,7 +20,7 @@ import { Nav } from "reactstrap";
 
 import { Search } from "./Searchbar";
 
-import Dashbord from "./Dashboard";
+// import Dashbord from "./Dashboard";
 // import Table from "./Table";
 // import ColumnsGrid from "./VerifyDocs";
 

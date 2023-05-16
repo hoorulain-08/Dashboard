@@ -1,6 +1,5 @@
 import React from "react";
-import legal from "../../assests/images/legal.svg";
-import digital from "../../assests/images/digital.svg";
+
 import pending from "../../assests/images/pendingIcon.svg";
 import next from "../../assests/images/next.svg";
 import pendingIcon from "../../assests/images/pending.svg";
@@ -11,7 +10,7 @@ import blockIcon from "../../assests/images/blockIcon.svg";
 import inactiveIcon from "../../assests/images/inactiveIcon.svg";
 import verifyuserIcon from "../../assests/images/verifyuserIcon.svg";
 import forward from "../../assests/images/forward.svg";
-import { Grid, Paper } from "@material-ui/core";
+import { Paper } from "@material-ui/core";
 import Typography from "@mui/material/Typography";
 const { Link } = require("react-router-dom");
 import heading from "../../assests/images/heading.svg";
@@ -29,13 +28,11 @@ import {
 import DonutChart from "react-donut-chart";
 
 import { useState, useEffect } from "react";
-// import { SetProfileData } from "../setData/SetData";
-// import { api } from "../API/Services";
+
 import { useNavigate } from "react-router-dom";
 
 export default function Dashbord() {
-  // these below are states for legal
-  // const navigate = useNavigate();
+
   
   const [pend, setPending] = useState();
   const [verify, setVerify] = useState();
@@ -89,48 +86,11 @@ export default function Dashbord() {
     );
     console.log("value received by the user is " + user);
   };
-  const LoadData = () => {
-    const payload = { ...SetProfileData() };
-    callToDbHandler(payload)
-      .then((res) => {
-        goodResponseHandler(res.successResponseData.payload[0]);
-      })
-      .catch((err) => {
-        console.error(err);
-        throw Error("Network response error");
-      });
-  };
+
 
   useEffect(() => {
     // LoadData();
   }, []);
-
-  function verified(){
-    // navigate("/admin/table");
-    // console.log("in verified function");
-    history.push("/admin/approved");
-
-    
-  }
-
-  function GoPending(){
-   
-    history.push("/admin/pending");
-
-    
-  }
-  function GoInProgress()
-  {
-    history.push("/admin/inprogress");
-  }
-  function GoUnVerified()
-  {
-    history.push("/admin/unverified");
-  }
-  function GoBlocked()
-  {
-    history.push("/admin/blocked");
-  }
 
   const reactDonutChartBackgroundColor = [
     "#00E396",

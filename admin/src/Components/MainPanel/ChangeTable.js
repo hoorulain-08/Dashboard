@@ -3,38 +3,19 @@
 import React from "react";
 import manageverified from "../../assests/images/manageverified.svg";
 import verifyuserIcon from "../../assests/images/verifyuserIcon.svg";
-import add from "../../assests/images/addIcon.svg";
-import del from "../../assests/images/del.svg";
-import Box from "@mui/material/Box";
+
 import Button from "@mui/material/Button";
-import edit from "../../assests/images/edit.svg";
-const { Link } = require("react-router-dom");
-import Swal from 'sweetalert2';
 import "../../assests/css/App.css";
-import Typography from "@mui/material/Typography";
-// import Approved from "./ApprovedDocs";
-// import View from "./ViewAll";
+
 import {
   Card,
-  CardHeader,
-  CardBody,
-  CardFooter,
-  CardTitle,
-  Row,
   Table,
-  Col,
 } from "reactstrap";
 import { Grid, Paper } from "@material-ui/core";
 import { useState, useEffect } from "react";
 import { SetVerifyBusinessData, SetViewData ,SetRemoveUserData} from "../setData/SetData";
-import { api } from "../API/Services";
 
-import Del from "./Del";
-import Edit from "./Edit";
-import NewBusiness from "./NewBusiness";
-import ColumnsGrid from "./ViewAll";
-import Modal from "@mui/material/Modal";
-// import delDraz from "../assests/images/delDraz.svg"
+
 
 import "../../assests/css/style.css";
 import Approved from "./ApprovedDocs";
@@ -76,16 +57,11 @@ const[load,setLoad]=useState(false);
 
   const callToDbHandler = async (payload) => {
     console.log("in call to db handler function ");
-    const response = await api.get.getApprovedData(payload);
-    console.log({response});
-    return response;
+ 
   };
   const goodResponseHandler = (response) => {
 
-    // console.log("in good response handler function of document verification ")
-    // console.log({ response });
- 
-    // console.log(response.legalDetailsByStatus);
+
   
     setStudentData(response.legalDetailsByStatus);
  
@@ -175,7 +151,7 @@ const[load,setLoad]=useState(false);
                 </div>
                 <p id="manage-id"> Manage All  Verified Business</p>
               </span>
-              {/* <h2 className="tab-heading">Managae all verified Businesses</h2> */}
+          
 
              
             </div>
@@ -186,7 +162,7 @@ const[load,setLoad]=useState(false);
                   <tr>
                     <th>Sr.NO</th>
                     <th>Business Name</th>
-                    <th>EID #</th>
+                    <th>ID #</th>
                     <th>Status</th>
                     <th>Details</th>
                   </tr>
@@ -199,16 +175,14 @@ const[load,setLoad]=useState(false);
                         <td>{info.id}</td>
                         <td>{info.registeredName}</td>
                         <td>{info.eid}</td>
-                        {/* <td>{(chk = info.email)}</td> */}
+                      
                         <td>{info.status}</td>
                         <td >
                              <Button  onClick={()=>viewDetails(info.id)} id="view-btn" >
                                   View All
                              </Button>
                             </td>
-                        {/* <td disabled={true}>
-                          info id is =  {info.id}
-                        </td> */}
+                       
                       </tr>
          
                     </>
