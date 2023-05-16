@@ -30,7 +30,7 @@ import {
 import "../../assests/css/App.css";
 // import {SetUpdateProfileData} from  "../setData/SetData";
 import Swal from 'sweetalert2';
-import { api } from "../API/Services";
+
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -123,9 +123,7 @@ export default function Edit(props) {
        console.log({payload});
        console.log("response from api after sending data is here below")
        
-        const response = await api.get.UpdateData(payload);
-        console.log({ response});
-        return response;
+      
       };
     
           function LoadEditData(){
@@ -209,26 +207,7 @@ export default function Edit(props) {
 
 
 
-// this part of the code has commmeted by me for testing of new api type integration
-            // console.log({req});
-            // callToDbHandler(req)
-            // .then((res) => {
-            //   // goodResponseHandler(res.successResponseData.payload);
-            //   if (res.successResponseData.status != null) {
-            //     Swal.fire({
-            //       title: " Edited Information!",
-            //       text: "Your Edited Information has saved!",
-            //       icon: 'success',
-            //       confirmButtonText: 'Close'
-            //     })
-            //     setCounter(5);
-            //   }
-            // })
-            // .catch((err) => {
-            //   console.error(err);
-            //   throw Error("view Network response error");
-            // });
-    
+
               
 
 
@@ -284,163 +263,19 @@ export default function Edit(props) {
  
     <Box sx={{ flexGrow: 1 }} style={{paddingTop:"60px",paddingLeft:"100px"}}>
     
-   {/* <Grid container  columns={16} >
-    <div style={{paddingLeft:"100px"}}> 
-        <Grid item xs={8}>
-       
-          <label className='label'>Unique Digital  Identity Number</label>
-          <Item>
-          <Field name="userId" className="in-disable"
-          disabled 
-            value={userId}
-          />
-                 
-          </Item>
-        </Grid>
-       </div>
-       <div style={{paddingLeft:"136px"}}> 
-        <Grid item xs={8}>
-       
+ 
+   
 
-
-          <label className='label'>Email Adress</label>
-    <Item>
-    <Field type="email" name="email" className="in-disable"  value={mail}
-    disabled/>
-                 
-    </Item>
-        </Grid>
-        </div>
-      </Grid> */}
-      {/* <br/> */}
-
-      {/* <Grid container  columns={16} >
-    <div style={{paddingLeft:"100px",paddingTop:"35px"}}> 
-
-        <Grid item xs={8} style={{paddingBottom:"10px"}}>
-        <label className='label'>First Name</label>
-        
-          <Field  className="in" 
-             
-              name="fname"
-              value={props.values.fname}
-                onChange={props.handleChange}
-          />
-                 
-        
-        </Grid>
-       </div>
-       <div style={{paddingLeft:"42px",paddingTop:"35px"}}> 
-        <Grid item xs={8}>
-          
-
-
-          <label className='label'>Last Name</label>
-          <Item >
-
-          <Field type="lname" name="lname" className="in" 
-              value={props.values.lname}
-                onChange={props.handleChange}
       
-          />
-                 
-          </Item>
-        </Grid>
-        </div>
-      </Grid> */}
     
 
-{/* <Grid container  columns={16} >
-<div style={{paddingLeft:"100px",paddingTop:"35px"}}> 
-  <Grid item xs={8}>
-
-  <label className='label'>Incorporation Number</label>
-          <Item >
-
-          <Field  name="incop" className="in" 
-       value={props.values.incop}
-       onChange={props.handleChange}
-          />
-                 
-          </Item>
-  </Grid>
- </div>
- <div style={{paddingLeft:"136px",paddingTop:"35px"}}> 
-  <Grid item xs={8}>
-
-    <label className='label'>Mobile Number</label>
-          <Item >
-
-          <Field type="mob" name="mob" className="in" 
-            value={props.values.mob}
-                onChange={props.handleChange}
-          />
-                  
-          </Item>
-  </Grid>
-  </div>
-</Grid> */}
 
 
 
-      {/* <Grid container  columns={16} >
-    <div style={{paddingLeft:"100px",paddingTop:"35px"}}> 
-        <Grid item xs={8}>
-  
-          <label className='label'>Country</label>
-    <Item>
-    <Field type="country" name="country" className="in"
-       value={props.values.country}
-       onChange={props.handleChange}
-    />
-                  
-    </Item>
-        </Grid>
-       </div>
-       <div style={{paddingLeft:"136px",paddingTop:"35px"}}> 
-        <Grid item xs={8}>
-           <label className='label'>Postal Code</label>
-          <Item >
 
-          <Field type="code" name="code" className="in" 
-         value={props.values.code}
-       onChange={props.handleChange}
-          />
-                 
-          </Item>
-        </Grid>
-        </div>
-      </Grid> */}
- 
+     
 
-{/* <Grid container  columns={16} >
-<div style={{paddingLeft:"100px",paddingTop:"35px"}}> 
-  <Grid item xs={8}>
-  <label className='label'>Company</label>
-  <Item >
-  <Field type="company" name="company" className="in-iss" 
-   value={props.values.company}
-       onChange={props.handleChange}
-  />
-                  
- </Item>
-  </Grid>
- </div>
- {/* <div className='exp'> 
-  <Grid item xs={8}>
-     <label className='label'>Date of Expiry </label>
-    <Item >
 
-    <Field type="expiry" name="expiry" className="in" />
-                  <ErrorMessage
-                    name="expiry"
-                    component="div"
-                    className='error'
-                  />
-    </Item>
-  </Grid>
-  </div> 
-</Grid> */}
 
 <Grid container  columns={16} >
 <div style={{paddingLeft:"100px"}}> 

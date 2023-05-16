@@ -30,7 +30,7 @@ import DonutChart from "react-donut-chart";
 
 import { useState, useEffect } from "react";
 // import { SetProfileData } from "../setData/SetData";
-import { api } from "../API/Services";
+// import { api } from "../API/Services";
 import { useNavigate } from "react-router-dom";
 
 export default function Dashbord() {
@@ -57,8 +57,7 @@ export default function Dashbord() {
   const [ninactive, setNInactive] = useState();
 
   const callToDbHandler = async (payload) => {
-    const response = await api.get.getProfileData(payload);
-    return response;
+  
   };
   const goodResponseHandler = (response) => {
     console.log("in response handler function");
