@@ -18,3 +18,12 @@ This website provides administrators with monitoring and management tools to tra
 3) yarn start <br />
 </p>
 
+<img width="948" height="448" alt="Screenshot 2026-02-07 123330" src="https://github.com/user-attachments/assets/8bf86b0b-d7a6-4041-8819-5acaef2ee58f" />
+
+<img width="960" height="429" alt="Screenshot 2026-02-07 123415" src="https://github.com/user-attachments/assets/d7e36a44-c765-4975-a57f-fe7e06707ae9" />
+<img width="960" height="429" alt="Screenshot 2026-02-07 123415" src="https://github.com/user-attachments/assets/9f5d2714-a547-433a-85b4-121f2ffafba4" />
+<img width="925" height="432" alt="Screenshot 2026-02-07 123433" src="https://github.com/user-attachments/assets/60f321c5-63c6-4c0f-9074-d01f23d714d4" />
+
+
+
+
