@@ -17,7 +17,7 @@ This website provides administrators with monitoring and management tools to tra
 2) yarn install  <br />
 3) yarn start <br />
 </p>
-
+<h3>Visual Overview of Application</h3>
 <img width="948" height="448" alt="Screenshot 2026-02-07 123330" src="https://github.com/user-attachments/assets/8bf86b0b-d7a6-4041-8819-5acaef2ee58f" />
 
 <img width="960" height="429" alt="Screenshot 2026-02-07 123415" src="https://github.com/user-attachments/assets/d7e36a44-c765-4975-a57f-fe7e06707ae9" />
